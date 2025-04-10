@@ -1,0 +1,17 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: default
+
+    steps:
+      - name: Fetch package info
+        uses: andrewslotin/go-proxy-pull-action@v1.3.0
