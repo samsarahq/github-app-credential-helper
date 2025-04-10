@@ -1,6 +1,6 @@
 # github-app-credential-helper
 
-[![release](https://github.com/samsarahq/github-app-credential-helper/actions/workflows/build.yml/badge.svg)](https://github.com/samsarahq/github-app-credential-helper/actions/workflows/release.yml)
+[![release](https://github.com/samsarahq/github-app-credential-helper/actions/workflows/release.yml/badge.svg)](https://github.com/samsarahq/github-app-credential-helper/actions/workflows/release.yml)
 ![GitHub License](https://img.shields.io/github/license/samsarahq/github-app-credential-helper)
 ![GitHub Tag](https://img.shields.io/github/v/tag/samsarahq/github-app-credential-helper)
 [![Go Report Card](https://goreportcard.com/badge/github.com/samsarahq/github-app-credential-helper)](https://goreportcard.com/report/github.com/samsarahq/github-app-credential-helper)
