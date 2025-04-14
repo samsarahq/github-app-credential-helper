@@ -18,7 +18,7 @@ import (
 // AppSecret provides the necessary components for GitHub authentication as an installation.
 type AppSecret struct {
 	AppId          string `json:"app_id"`
-	InstallationId string `json:"installation_id"`
+	InstallationId int    `json:"installation_id"`
 	PrivateKey     string `json:"private_key"`
 }
 
@@ -95,7 +95,7 @@ func (auth *Authenticator) Authenticate() (string, error) {
 		log.Fatal(err)
 	}
 
-	u, err := url.Parse(fmt.Sprintf("https://api.github.com/app/installations/%s/access_tokens", creds.InstallationId))
+	u, err := url.Parse(fmt.Sprintf("https://api.github.com/app/installations/%d/access_tokens", creds.InstallationId))
 	if err != nil {
 		return "", err
 	}
