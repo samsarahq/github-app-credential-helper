@@ -2,7 +2,11 @@ package common
 
 import (
 	"bufio"
+	"crypto/rsa"
+	"crypto/x509"
 	"encoding/json"
+	"encoding/pem"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -90,7 +94,12 @@ func (auth *Authenticator) Authenticate() (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodRS256, claims)
-	signed, err := token.SignedString(creds.PrivateKey)
+	priv, err := loadPrivateKey(creds)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	signed, err := token.SignedString(priv)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -137,4 +146,13 @@ capability=authtype
 authtype=bearer
 credential=%s
 `, at.Token), nil
+}
+
+func loadPrivateKey(creds *AppSecret) (*rsa.PrivateKey, error) {
+	block, _ := pem.Decode([]byte(creds.PrivateKey))
+	if block == nil || block.Type != "RSA PRIVATE KEY" {
+		return nil, errors.New("invalid private key")
+	}
+
+	return x509.ParsePKCS1PrivateKey(block.Bytes)
 }
