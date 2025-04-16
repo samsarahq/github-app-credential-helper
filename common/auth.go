@@ -142,9 +142,8 @@ func (auth *Authenticator) Authenticate() (string, error) {
 
 	return fmt.Sprintf(`protocol=https
 host=github.com
-capability=authtype
-authtype=bearer
-credential=%s
+username=x-access-token
+password=%s
 `, at.Token), nil
 }
 
